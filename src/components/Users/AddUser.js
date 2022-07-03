@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 
 import classes from './AddUser.module.css';
 
-const AddUser = () => {
+const AddUser = props => {
   const [enteredUsername, setEnteredUsername] = useState('');
   const [enteredAge, setEnteredAge] = useState('');
 
@@ -19,11 +20,13 @@ const AddUser = () => {
     }
 
     const newUser = {
+      id: uuidv4(),
       username: enteredUsername,
       age: enteredAge,
     };
-
     console.log(newUser);
+
+    props.onAddUser(newUser);
 
     setEnteredUsername('');
     setEnteredAge('');
